@@ -24,7 +24,7 @@
   box-shadow: 0 0 200px #ff4d4d;
   box-shadow: 0 0 150px #cccccc;
   padding: 2px;
-  top: 27%;
+  bottom: 20%;
 }
 
 .left-img img {
@@ -54,7 +54,7 @@
 .left-btn,
 .right-btn {
   position: absolute;
-  bottom: -5%;
+  bottom: -1%;
   /* top: 50%; */
   /* margin-top: 7%; */
 }
