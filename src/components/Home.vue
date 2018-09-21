@@ -1,10 +1,10 @@
 <template>
     <div>
-      <div class="body"></div>
-      <!-- <audio autoplay loop>
-        <source src="./sound/horror1.MP3" type="audio/ogg">
-        <source src="./sound/horror2.mp3" type="audio/mpeg">
-      </audio> -->
+      <div class="body">
+      <audio autoplay>
+        <source src="https://storage.googleapis.com/andre-sudi/1537504721567horror2.mp3" type="audio/ogg">
+        <source src="https://storage.googleapis.com/andre-sudi/1537504721567horror2.mp3" type="audio/ogg">
+      </audio>
 
       <div class="row">
         <h1>Welcome To Zombie World</h1>
@@ -21,6 +21,7 @@
         <input type="password" placeholder="password" name="password" v-model="room"><br>
         <input type="button" value="JOIN" @click="addRoom">
       </div>
+    </div>
     </div>
 </template>
 
