@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Pac Eat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <div class="finish-bg">
+    <img src="./img/kepotong/8.png" alt="zombie mode">
+    <h2>Thankyou "Andre" ! <br/> Wahyudi now become a <br/> <span>ZOMBIE</span></h2>
+  </div>
+
+  <div class="full-bg">
+    <img src="./img/paku.png" alt="paku" class="paku-left">
+    <img src="./img/paku.png" alt="paku" class="paku-right">
+    <div class="left-img">
+      <img src="./img/kepotong/1.png" alt="wahyudi">
+    </div>
+    <div class="right-img">
+        <img src="./img/kepotong/1.png" alt="wahyudi">
+    </div>
+    <a href="javascript:void(0)" class="left-btn">
+      <img src="./img/btn-left.png" alt="">
+    </a>
+    <a href="javascript:void(0)" class="right-btn">
+      <img src="./img/btn-right.png" alt="">
+    </a>
+  </div>
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script>
+    let leftCount = 0;
+    let rightCount = 0;
+    let currentLeft = 1;
+    let currentRight = 1;
+
+    let stateLimitClick = 5;
+    let zombieImage = 8;
+
+    let baseImgURL = 'http://localhost:8080/gameplay_template/img/kepotong'
+
+    $('.left-btn').click(function(e) {
+      console.log(`${baseImgURL}/8.png`, '<============ URL IMAGE')
+
+      if (currentLeft >= zombieImage) {
+        $('.finish-bg').addClass('active');
+      } else {
+        if(leftCount >= stateLimitClick) {
+          leftCount = 0;
+
+          if(currentLeft >= zombieImage) {
+            $('.finish-bg').addClass('active');
+          } else {
+            $('.left-img img').attr('src', `${baseImgURL}/${currentLeft += 1}.png`);
+          }
+        } else {
+          leftCount++;
+        }
+      }
+
+      console.log(leftCount, '<======== COUNT CLICK');
+      console.log(currentLeft, '<========== CURRENT IMAGE');
+
+      $(this).addClass('animate');
+      setTimeout(() => {
+        $(this).removeClass('animate');
+      }, 500);
+    });
+
+    $('.right-btn').click(function(e) {
+      rightCount++;
+
+      $(this).addClass('animate');
+      setTimeout(() => {
+        $(this).removeClass('animate');
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>
