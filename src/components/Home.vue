@@ -9,7 +9,6 @@
     </div>
     <div class="grad"></div>
     <div class="header">
-  
       <!-- name Site -->
       <div>Site<span>Random</span></div>
     </div>
