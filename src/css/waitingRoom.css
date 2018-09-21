@@ -11,9 +11,6 @@ body{
 	font-size: 12px;
 }
 
-h2 {
-
-}
 
 
 
@@ -25,9 +22,9 @@ h2 {
 	bottom: -40px;
 	width: auto;
 	height: auto;
-	background-image: url(../img/zombie_waiting_room.jpg);
+	background-image: url(../assets/zombie_waiting_room.jpg);
 	background-size: cover;
-	-webkit-filter: blur(5px);
+	/* -webkit-filter: blur(5px); */
 	z-index: 0;
 }
 
