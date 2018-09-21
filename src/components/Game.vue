@@ -3,27 +3,27 @@
 
     <div :class="{ 'finish-bg': true, 'active': isFinishBg }">
       <img src="../assets/img/kepotong/8.png" alt="zombie mode">
-      <h2>Thankyou "Andre" ! <br/> Wahyudi now become a <br/> <span>ZOMBIE</span></h2>
+      <h2>Thankyou !<br/> Wahyudi now become a <br/> <span>ZOMBIE</span></h2>
     </div>
 
     <div class="full-bg">
-      <img src="../assets/img/paku.png" alt="paku" class="paku-left">
-      <img src="../assets/img/paku.png" alt="paku" class="paku-right">
+      <img src="https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537517164922paku.png" alt="paku" class="paku-left">
+      <img src="https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537517164922paku.png" alt="paku" class="paku-right">
       <div class="left-img">
-        <img src="../assets/img/kepotong/1.png" alt="wahyudi">
+        <img :src="leftSrcImg" alt="wahyudi">
       </div>
       <div class="right-img">
-          <img src="../assets/img/kepotong/1.png" alt="wahyudi">
+        <img :src="rightSrcImg" alt="wahyudi">
       </div>
       <a href="javascript:void(0)" :class="{ 'left-btn': true, 'animate': isAnimateLeft }" @click="tambah1">
-        <img src="../assets/img/btn-left.png" alt="">
+        <img src="https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537517100643btn-left.png" alt="">
       </a>
       <!-- <audio id="engah">
         <source src="https://storage.googleapis.com/andre-sudi/1537504721567horror2.mp3" type="audio/ogg">
       </audio> -->
 
       <a href="javascript:void(0)" :class="{ 'right-btn': true, 'animate': isAnimateRight }" @click="tambah2">
-        <img src="../assets/img/btn-right.png" alt="">
+        <img src="https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537517132954btn-right.png" alt="">
       </a>
       <!-- <audio id="engah2">
         <source src="https://storage.googleapis.com/andre-sudi/1537504721567horror2.mp3" type="audio/ogg">
@@ -61,9 +61,28 @@
         isFinishBg: false,
         isAnimateLeft: false,
         isAnimateRight: false,
+
+        leftSrc: 1,
+        rightSrc: 1,
+        leftSrcImg: '',
+        rightSrcImg: '',
+
         counter1: 0,
         value2: 0,
-        room: localStorage.getItem("room")
+        room: localStorage.getItem("room"),
+        arrImg: [
+          'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/15375166543951.png',
+          'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/15375167538952.png',
+          'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/15375167846543.png',
+          'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/15375168180554.png',
+          'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/15375168461245.png',
+          'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/15375168752856.png',
+          'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/15375169000277.png',
+          'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/15375169384208.png'
+        ],
+        paku: 'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537517164922paku.png',
+        btnLeftImg: 'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537517100643btn-left.png',
+        btnRightImg: 'https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537517132954btn-right.png'
       };
     },
     methods: {
@@ -92,13 +111,25 @@
           .ref("rooms/" + this.room + "/player1")
           .once("value")
           .then(function(snapshot) {
-            let pos = snapshot.val().status;
-            if (pos == 10) {
-              alert(`${pos}`);
-            } else if (pos == 15) {
-              alert(`${pos}`);
-            } else if (pos == 20) {
-              alert("winner");
+            let pos = snapshot.val().status
+            let max = 5
+
+            if(pos === 5) {
+              self.leftSrcImg = self.arrImg[1]
+            } else if(pos === 10) {
+              self.leftSrcImg = self.arrImg[2]
+            } else if(pos === 15) {
+              self.leftSrcImg = self.arrImg[3]
+            } else if(pos === 20) {
+              self.leftSrcImg = self.arrImg[4]
+            } else if(pos === 25) {
+              self.leftSrcImg = self.arrImg[5]
+            } else if(pos === 30) {
+              self.leftSrcImg = self.arrImg[6]
+            } else if(pos === 35) {
+              self.leftSrcImg = self.arrImg[7]
+            } else if(pos === 40) {
+              self.isFinishBg = true
             }
           });
       },
@@ -129,27 +160,65 @@
           .then(function(snapshot) {
             let pos = snapshot.val().status
             let max = 5
-            if (pos % max === 0) {
-              alert(pos)
-            } else if (pos == 40) {
-              alert('finish')
+
+            if (pos === 7) {
+              self.isFinishBg = true
+            } else {
+              self.rightSrcImg = self.arrImg[pos + 1]
             }
+
+            self.rightSrcImg = self.arrImg[pos + 1]
+            // if(pos === 5) {
+            //   self.rightSrcImg = self.arrImg[1]
+            // } else if(pos === 10) {
+            //   self.rightSrcImg = self.arrImg[2]
+            // } else if(pos === 15) {
+            //   self.rightSrcImg = self.arrImg[3]
+            // } else if(pos === 20) {
+            //   self.rightSrcImg = self.arrImg[4]
+            // } else if(pos === 25) {
+            //   self.rightSrcImg = self.arrImg[5]
+            // } else if(pos === 30) {
+            //   self.rightSrcImg = self.arrImg[6]
+            // } else if(pos === 35) {
+            //   self.rightSrcImg = self.arrImg[7]
+            // } else if(pos === 40) {
+            //   self.isFinishBg = true
+            // }
           });
       },
       hor1() {
         document.getElementById("hor1").play();
       },
       engah() {
-        document.getElementById("engah").play();
+        // document.getElementById("engah").play();
       },
       engah2() {
-        document.getElementById("engah2").play();
+        // document.getElementById("engah2").play();
       }
     },
     mounted () {
       localStorage.removeItem('player1')
       localStorage.removeItem('player2')
+      this.leftSrcImg = this.arrImg[this.leftSrc - 1]
+      this.rightSrcImg = this.arrImg[this.rightSrc - 1]
     }
+    // watch: {
+    //   rightSrcImg () {
+    //     console.log('masuk ga')
+
+    //     let self = this
+
+    //     db
+    //       .ref("rooms/" + this.room + "/player2")
+    //       .once("value")
+    //       .then(function(snapshot) {
+    //         console.log('=-----------------------------!')
+    //         // let pos = snapshot.val().status
+    //         // self.rightSrcImg = self.arrImg[pos]
+    //       }
+    //   }
+    //}
   };
 </script>
 
