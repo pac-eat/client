@@ -9,5 +9,5 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var db = firebase.datbase()
+var db = firebase.database()
 export default db

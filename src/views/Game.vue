@@ -14,5 +14,19 @@ export default {
 </script>
 
 <style>
-
 </style>
+//     /* <game></game>
+// </template>
+
+// // <script>
+// import game from "@/components/Game.vue";
+// export default {
+//   name: "home",
+//   components: {
+//     game
+//   }
+// };
+// </script>
+
+// <style>
+// </style> 
