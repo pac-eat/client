@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.full-bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('./img/thumb-1920-201712.jpg');
+  background-size: cover;
+}
+
+.left-img img,
+.right-img img {
+  position: absolute;
+  width: 300px;
+  height: auto;
+  border-radius: 10px/30px;
+  background-color: linear-gradient(#333333, #dd1818);
+  box-shadow: 0 0 200px #ff4d4d;
+  box-shadow: 0 0 150px #cccccc;
+  padding: 2px;
+  top: 27%;
+}
+
+.left-img img {
+  left: 10%;
+}
+.right-img img {
+  right: 10%;
+}
+
+.paku-left,
+.paku-right {
+  position: absolute;
+  z-index: 9;
+  max-width: 70px;
+  top: 17%;
+}
+
+.paku-left {
+  left: 20%;
+}
+
+.paku-right {
+  right: 15%;
+}
+
+/* HAND BUTTON */
+.left-btn,
+.right-btn {
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  margin-top: 7%;
+}
+
+.left-btn img,
+.right-btn img {
+  max-width: 200px;
+}
+
+.left-btn {
+  left: 10%;
+}
+
+.right-btn {
+  right: 10%;
+}
+
+.animate img {
+  animation-name: zoom-in;
+  animation-duration: 0.1s;
+  transition: all 0.1s ease;
+}
+
+@keyframes zoom-in {
+  from   {transform: scale(1)}
+  to {transform: scale(0.9)}
+}
