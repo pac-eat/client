@@ -5,10 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Pac Eat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  
+
+  <div class="finish-bg">
+    <img src="./img/kepotong/8.png" alt="zombie mode">
+    <h2>Thankyou "andre" ! <br/> Wahyudi now become a <br/> <span>ZOMBIE</span></h2>
+  </div>
+
   <div class="full-bg">
     <img src="./img/paku.png" alt="paku" class="paku-left">
     <img src="./img/paku.png" alt="paku" class="paku-right">
@@ -44,16 +50,20 @@
     $('.left-btn').click(function(e) {
       console.log(`${baseImgURL}/8.png`, '<============ URL IMAGE')
 
-      if(leftCount >= stateLimitClick) {
-        leftCount = 0;
-
-        if(currentLeft >= zombieImage) {
-          alert('GAME FINISH');
-        } else {
-          $('.left-img img').attr('src', `${baseImgURL}/${currentLeft += 1}.png`);
-        }
+      if (currentLeft >= zombieImage) {
+        $('.finish-bg').addClass('active');
       } else {
-        leftCount++;
+        if(leftCount >= stateLimitClick) {
+          leftCount = 0;
+
+          if(currentLeft >= zombieImage) {
+            $('.finish-bg').addClass('active');
+          } else {
+            $('.left-img img').attr('src', `${baseImgURL}/${currentLeft += 1}.png`);
+          }
+        } else {
+          leftCount++;
+        }
       }
 
       console.log(leftCount, '<======== COUNT CLICK');
