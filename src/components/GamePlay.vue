@@ -36,10 +36,8 @@ export default {
     return {
       value1: 0,
       value2: 0,
-      image1:
-        "https://storage.googleapis.com/andre-sudi/1537463225393wahyudi.jpg",
-      image2:
-        "https://storage.googleapis.com/andre-sudi/1537464549002helboi.jpg"
+      image1: '',
+      image2: ''
     };
   },
   methods: {
@@ -63,7 +61,7 @@ export default {
       this.value2++;
       if (this.value2 == 5) {
         this.image2 =
-          "https://storage.googleapis.com/andre-sudi/1537465121265helmimata.gif";
+          "https://storage.googleapis.com/andre-sudi/1537463288613wahyudimata.gif";
       } else if (this.value2 >= 10 && this.value2 <= 20) {
         this.image2 =
           "https://storage.googleapis.com/andre-sudi/1537463393393wahyumuter.gif";

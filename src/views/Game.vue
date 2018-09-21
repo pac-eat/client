@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import GamePlay from '@/components/GamePlay'
+import GamePlay from '@/components/Game'
 export default {
     components: {
         GamePlay
@@ -14,5 +14,5 @@ export default {
 </script>
 
 <style>
-
 </style>
+
