@@ -1,169 +1,749 @@
 <template>
-    <div class="container-fluid bangke">
-        <div class="coba">
-            <h1>Welcome to Codepen!</h1>
-            <div class="login-form">
-                <div class="main-div">
-                    <div class="panel">
-                        <h2></h2>
-                        <p>username</p>
-                    </div>
-                    <form id="Login">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="username"  v-model="playerName">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="inputPassword" placeholder="room" v-model="room">
-                        </div>
-                        <button type="button" class="btn btn-primary" @click="addRoom">JOIN</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div>
+      <div class="body"></div>
+      <!-- <audio autoplay loop>
+        <source src="./sound/horror1.MP3" type="audio/ogg">
+        <source src="./sound/horror2.mp3" type="audio/mpeg">
+      </audio> -->
+
+      <div class="row">
+        <h1>Welcome To Zombie World</h1>
+      </div>
+      <div class="grad"></div>
+      <div class="header">
+
+        <!-- name Site -->
+        <div>Site<span>Random</span></div>
+      </div>
+      <br>
+      <div class="login">
+        <input type="text" placeholder="username" name="user"  v-model="playerName"><br>
+        <input type="password" placeholder="password" name="password" v-model="room"><br>
+        <input type="button" value="JOIN" @click="addRoom">
+      </div>
     </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';    
+import { mapState, mapActions } from "vuex";
+import {Howl, Howler} from 'howler';
 export default {
-    data () {
-        return {
-            room: '',
-            playerName: ''
-        }
-    },
-    methods: {
-        ...mapActions([
-            'createRoom'
-        ]),
-        addRoom () {
-            console.log('masuk');
-            
-            let newRoom = {
-                room: this.room,
-                playerName: this.playerName
-            }
-            this.createRoom(newRoom)
-        }
+  data() {
+    return {
+      room: "",
+      playerName: ""
+    };
+  },
+  methods: {
+    ...mapActions(["createRoom"]),
+    addRoom() {
+      console.log("masuk");
+
+      let newRoom = {
+        room: this.room,
+        playerName: this.playerName
+      };
+      this.createRoom(newRoom);
     }
-}
+  }
+};
 </script>
 
 <style scoped>
-.bangke{ background-image: url(../assets/login.jpg); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
-.form-heading { color:#fff; font-size:23px;}
-.panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
-.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
-.login-form .form-control {
-  background: #f7f7f7 none repeat scroll 0 0;
-  border: 1px solid #d4d4d4;
-  border-radius: 4px;
-  font-size: 14px;
-  height: 50px;
-  line-height: 50px;
-}
-.main-div {
-  background: #ffffff none repeat scroll 0 0;
-  border-radius: 2px;
-  margin: 200px auto 30px;
-  max-width: 38%;
-  padding: 50px 70px 70px 71px;
-}
-.login-form .form-group {
-  margin-bottom:10px;
-}
-.login-form{ text-align:center;}
-.forgot a {
-  color: #777777;
-  font-size: 14px;
-  text-decoration: underline;
-}
-.login-form  .btn.btn-primary {
-  background: #f0ad4e none repeat scroll 0 0;
-  border-color: #f0ad4e;
-  color: #ffffff;
-  font-size: 14px;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  padding: 0;
-}
-.forgot {
-  text-align: left; margin-bottom:30px;
-}
-.botto-text {
-  color: #ffffff;
-  font-size: 14px;
-  margin: auto;
-}
-.login-form .btn.btn-primary.reset {
-  background: #ff9900 none repeat scroll 0 0;
-}
-.back { text-align: left; margin-top:10px;}
-.back a {color: #444444; font-size: 13px;text-decoration: none;}
-/* css font */
-/* 
-@import url(https://fonts.googleapis.com/css?family=Denk+One);
-@dark-gray: #212121;
-@red: 255;
-@green: 0;
-@blue: 0;
+@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
 body {
-  background-color:" @dark-gray";
+  margin: 0;
+  padding: 0;
+  background: #fff;
+
+  color: #fff;
+  font-family: Arial;
+  font-size: 12px;
+}
+
+.body {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -40px;
+  bottom: -40px;
+  width: auto;
+  height: auto;
+  background-image: url(../assets/login1.jpg);
+  background-size: cover;
+  /* -webkit-filter: blur(5px); */
+  z-index: 0;
+}
+
+.grad {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -40px;
+  bottom: -40px;
+  width: auto;
+  height: auto;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgba(0, 0, 0, 0)),
+    color-stop(100%, rgba(0, 0, 0, 0.65))
+  ); /* Chrome,Safari4+ */
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.header {
+  position: absolute;
+  top: calc(50% - 35px);
+  left: calc(50% - 255px);
+  z-index: 2;
+}
+
+.header div {
+  float: left;
+  color: #fff;
+  font-family: "Exo", sans-serif;
+  font-size: 35px;
+  font-weight: 200;
+}
+
+.header div span {
+  color: #c51212 !important;
+}
+
+.login {
+  position: absolute;
+  top: calc(50% - 75px);
+  left: calc(50% - 50px);
+  height: 150px;
+  width: 350px;
+  padding: 10px;
+  z-index: 2;
+}
+
+.login input[type="text"] {
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  color: #fff;
+  font-family: "Exo", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+}
+
+.login input[type="password"] {
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  color: #fff;
+  font-family: "Exo", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+  margin-top: 10px;
+}
+
+.login input[type="button"] {
+  width: 260px;
+  height: 35px;
+  background: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #a18d6c;
+  font-family: "Exo", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px;
+  margin-top: 10px;
+}
+
+.login input[type="button"]:hover {
+  opacity: 0.8;
+}
+
+.login input[type="button"]:active {
+  opacity: 0.6;
+}
+
+.login input[type="text"]:focus {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.login input[type="password"]:focus {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.login input[type="button"]:focus {
+  outline: none;
+}
+
+::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+::-moz-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* css font */
+
+@font-face {
+  font-family: "Denk One";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Denk One"), local("DenkOne-Regular"),
+    url(https://fonts.gstatic.com/s/denkone/v5/dg4m_pzhrqcFb2IzRNtAr7w.ttf)
+      format("truetype");
+}
+body {
+  background-color: #212121;
 }
 h1 {
   color: transparent;
-  text-shadow: 0 0 5px rgba(0,0,0,0.5);
-  font-family: 'Denk One', sans-serif;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  font-family: "Denk One", sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 2em;
-  
+  font-size: 3em;
   position: absolute;
   left: 50%;
-  top: 35%;
+  top: 10%;
   margin-left: -180px;
-  
   -webkit-animation: horror-animation 5s infinite;
   -moz-animation: horror-animation 5s infinite;
   -o-animation: horror-animation 5s infinite;
   animation: horror-animation 5s infinite;
 }
-@-webkit-keyframes horror-animation {.mixi-frames;}
-@-moz-keyframes horror-animation {.mixi-frames;}
-@-o-keyframes horror-animation {.mixi-frames;}
-@keyframes horror-animation {.mixi-frames;}
-.mixi-frames () {
-    0% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.1); left: 51%; top: 36%;}
-    5% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.2); left: 50%; top: 35%;}
-  10% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.3); left: 49%; top: 34%;}
-    15% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.4); left: 50%; top: 35%;}
-  16% {text-shadow: 0 0 5px @dark-gray; left: 50%}
-  17% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.4); left: 50%;}
-    20% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.5); left: 49%}
-  25% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.6); left: 49%}
-    30% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.7); left: 50%}
-    35% {text-shadow: 0 0 5px rgba(@red,@green,@blue,0.8); left: 50%}
-  36% {text-shadow: 0 0 5px @dark-gray; left: 50%}
-  37% {text-shadow: 0 0 5px rgba(@red,@green,@blue,0.8); left: 50%}
-  40% {text-shadow: 0 0 5px rgba(@red,@green,@blue,0.9); left: 51%}
-    45% {text-shadow: 0 0 5px rgba(@red,@green,@blue,0.8); left: 51%}
-    50% {text-shadow: 0 0 5px rgba(@red,@green,@blue,0.7); left: 51%}
-    55% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.6); left: 50%}
-  56% {text-shadow: 0 0 5px @dark-gray; left: 50%}
-  57% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.6); left: 52%}
-  60% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.5); left: 50%}
-    65% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.4); left: 50%}
-    70% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.3); left: 49%}
-  75% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.2); left: 49%}
-  76% {text-shadow: 0 0 5px @dark-gray; left: 50%}
-  77% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.2); left: 49%}
-    80% {text-shadow: 0 0 5px rgba(@red,@green,@blue,0.1); left: 49%}
-    85% {text-shadow: 0 0 5px rgba(@red,@green,@blue,0.2); left: 51%}
-  86% {text-shadow: 0 0 5px @dark-gray; left: 50%}
-  87% {text-shadow: 0 0 5px rgba(@red,@green,@blue,0.2); left: 51%}
-  90% {text-shadow: 0 0 5px rgba(@red,@green,@blue,0.3); left: 51%}
-    95% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.4); left: 51%} 
-    100% {text-shadow: 0 0 10px rgba(@red,@green,@blue,0.5); left: 50%} 
-} */
+@-webkit-keyframes horror-animation {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+    left: 51%;
+    top: 10%;
+  }
+  5% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 50%;
+    top: 10%;
+  }
+  10% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    left: 49%;
+    top: 10%;
+  }
+  15% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+    top: 10%;
+  }
+  16% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  17% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+  }
+  20% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 49%;
+  }
+  25% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 49%;
+  }
+  30% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    left: 50%;
+  }
+  35% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 50%;
+  }
+  36% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  37% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 50%;
+  }
+  40% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.9);
+    left: 51%;
+  }
+  45% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 51%;
+  }
+  50% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+    left: 51%;
+  }
+  55% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 50%;
+  }
+  56% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  57% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 52%;
+  }
+  60% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 50%;
+  }
+  65% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+  }
+  70% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    left: 49%;
+  }
+  75% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 49%;
+  }
+  76% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  77% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 49%;
+  }
+  80% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+    left: 49%;
+  }
+  85% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+    left: 51%;
+  }
+  86% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  87% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+    left: 51%;
+  }
+  90% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    left: 51%;
+  }
+  95% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 51%;
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 50%;
+  }
+}
+@-moz-keyframes horror-animation {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+    left: 51%;
+    top: 10%;
+  }
+  5% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 50%;
+    top: 10%;
+  }
+  10% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    left: 49%;
+    top: 10%;
+  }
+  15% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+    top: 10%;
+  }
+  16% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  17% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+  }
+  20% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 49%;
+  }
+  25% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 49%;
+  }
+  30% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    left: 50%;
+  }
+  35% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 50%;
+  }
+  36% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  37% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 50%;
+  }
+  40% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.9);
+    left: 51%;
+  }
+  45% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 51%;
+  }
+  50% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+    left: 51%;
+  }
+  55% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 50%;
+  }
+  56% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  57% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 52%;
+  }
+  60% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 50%;
+  }
+  65% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+  }
+  70% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    left: 49%;
+  }
+  75% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 49%;
+  }
+  76% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  77% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 49%;
+  }
+  80% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+    left: 49%;
+  }
+  85% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+    left: 51%;
+  }
+  86% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  87% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+    left: 51%;
+  }
+  90% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    left: 51%;
+  }
+  95% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 51%;
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 50%;
+  }
+}
+@-o-keyframes horror-animation {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+    left: 51%;
+    top: 10%;
+  }
+  5% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 50%;
+    top: 10%;
+  }
+  10% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    left: 49%;
+    top: 10%;
+  }
+  15% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+    top: 10%;
+  }
+  16% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  17% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+  }
+  20% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 49%;
+  }
+  25% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 49%;
+  }
+  30% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    left: 50%;
+  }
+  35% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 50%;
+  }
+  36% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  37% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 50%;
+  }
+  40% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.9);
+    left: 51%;
+  }
+  45% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 51%;
+  }
+  50% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+    left: 51%;
+  }
+  55% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 50%;
+  }
+  56% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  57% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 52%;
+  }
+  60% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 50%;
+  }
+  65% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+  }
+  70% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    left: 49%;
+  }
+  75% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 49%;
+  }
+  76% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  77% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 49%;
+  }
+  80% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+    left: 49%;
+  }
+  85% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+    left: 51%;
+  }
+  86% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  87% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+    left: 51%;
+  }
+  90% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    left: 51%;
+  }
+  95% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 51%;
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 50%;
+  }
+}
+@keyframes horror-animation {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+    left: 51%;
+    top: 10%;
+  }
+  5% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 50%;
+    top: 10%;
+  }
+  10% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    left: 49%;
+    top: 10%;
+  }
+  15% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+    top: 10%;
+  }
+  16% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  17% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+  }
+  20% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 49%;
+  }
+  25% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 49%;
+  }
+  30% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    left: 50%;
+  }
+  35% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 50%;
+  }
+  36% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  37% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 50%;
+  }
+  40% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.9);
+    left: 51%;
+  }
+  45% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    left: 51%;
+  }
+  50% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+    left: 51%;
+  }
+  55% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 50%;
+  }
+  56% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  57% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    left: 52%;
+  }
+  60% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 50%;
+  }
+  65% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 50%;
+  }
+  70% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    left: 49%;
+  }
+  75% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 49%;
+  }
+  76% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  77% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    left: 49%;
+  }
+  80% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+    left: 49%;
+  }
+  85% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+    left: 51%;
+  }
+  86% {
+    text-shadow: 0 0 5px #212121;
+    left: 50%;
+  }
+  87% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+    left: 51%;
+  }
+  90% {
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    left: 51%;
+  }
+  95% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    left: 51%;
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    left: 50%;
+  }
+}
 </style>
