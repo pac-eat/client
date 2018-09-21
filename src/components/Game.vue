@@ -34,18 +34,22 @@
   <!-- BACKUP
   <div class="container">
     <br><br>
+     <audio autoplay loop>
+          <source src="https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537515036142zombie2.mp3" type="audio/ogg">
+          <source src="https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537515036142zombie2.mp3" type="audio/ogg">
+        </audio>
     <h1>Game Play</h1>
     <div class="row">
       <div class="col-md-6">
         <button @click="tambah1">test 1</button>
         <audio id="engah">
-            <source src="https://storage.googleapis.com/andre-sudi/1537504721567horror2.mp3" type="audio/ogg">
+            <source src="https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537514463690eating.mp3" type="audio/ogg">
         </audio>
       </div>
       <div class="col-md-6">
         <button @click="tambah2">test 2</button>
         <audio id="engah2">
-            <source src="https://storage.googleapis.com/andre-sudi/1537504721567horror2.mp3" type="audio/ogg">
+            <source src="https://storage.googleapis.com/traveller-blog.helmiyogantara.club/1537514463690eating.mp3" type="audio/ogg">
         </audio>
       </div>
     </div>

@@ -14,8 +14,8 @@
     </div>
     <br>
     <div class="login">
-      <input type="text" placeholder="username" name="user" v-model="playerName"><br>
-      <input type="password" placeholder="password" name="password" v-model="room"><br>
+      <input type="text" placeholder="username"  style="color: black" v-model="playerName"><br>
+      <input type="text" placeholder="room"  style="color: black" v-model="room"><br>
       <input type="button" value="JOIN" @click="addRoom">
     </div>
   </div>
@@ -124,10 +124,9 @@
   .login input[type="text"] {
     width: 250px;
     height: 30px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid black;
     border-radius: 2px;
-    color: #fff;
+    color:black;
     font-family: "Exo", sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -137,7 +136,6 @@
   .login input[type="password"] {
     width: 250px;
     height: 30px;
-    background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 2px;
     color: #fff;
