@@ -17,7 +17,7 @@
 .left-img img,
 .right-img img {
   position: absolute;
-  width: 300px;
+  width: 280px;
   height: auto;
   border-radius: 10px/30px;
   background-color: linear-gradient(#333333, #dd1818);
@@ -39,7 +39,7 @@
   position: absolute;
   z-index: 9;
   max-width: 70px;
-  top: 17%;
+  bottom: 65%;
 }
 
 .paku-left {
