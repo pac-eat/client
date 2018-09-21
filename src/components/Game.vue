@@ -68,6 +68,7 @@
         rightSrcImg: '',
 
         counter1: 0,
+        counter2: 0,
         value2: 0,
         room: localStorage.getItem("room"),
         arrImg: [
@@ -114,22 +115,10 @@
             let pos = snapshot.val().status
             let max = 5
 
-            if(pos === 5) {
-              self.leftSrcImg = self.arrImg[1]
-            } else if(pos === 10) {
-              self.leftSrcImg = self.arrImg[2]
-            } else if(pos === 15) {
-              self.leftSrcImg = self.arrImg[3]
-            } else if(pos === 20) {
-              self.leftSrcImg = self.arrImg[4]
-            } else if(pos === 25) {
-              self.leftSrcImg = self.arrImg[5]
-            } else if(pos === 30) {
-              self.leftSrcImg = self.arrImg[6]
-            } else if(pos === 35) {
-              self.leftSrcImg = self.arrImg[7]
-            } else if(pos === 40) {
+            if (pos === 7) {
               self.isFinishBg = true
+            } else {
+              self.leftSrcImg = self.arrImg[pos + 1]
             }
           });
       },
@@ -139,7 +128,7 @@
         db.ref("rooms/" + this.room + "/player2").set({
           player: "player2",
           token: this.room,
-          status: this.counter1++
+          status: this.counter2++
         });
   
         this.read2();
@@ -166,25 +155,6 @@
             } else {
               self.rightSrcImg = self.arrImg[pos + 1]
             }
-
-            self.rightSrcImg = self.arrImg[pos + 1]
-            // if(pos === 5) {
-            //   self.rightSrcImg = self.arrImg[1]
-            // } else if(pos === 10) {
-            //   self.rightSrcImg = self.arrImg[2]
-            // } else if(pos === 15) {
-            //   self.rightSrcImg = self.arrImg[3]
-            // } else if(pos === 20) {
-            //   self.rightSrcImg = self.arrImg[4]
-            // } else if(pos === 25) {
-            //   self.rightSrcImg = self.arrImg[5]
-            // } else if(pos === 30) {
-            //   self.rightSrcImg = self.arrImg[6]
-            // } else if(pos === 35) {
-            //   self.rightSrcImg = self.arrImg[7]
-            // } else if(pos === 40) {
-            //   self.isFinishBg = true
-            // }
           });
       },
       hor1() {
@@ -198,27 +168,33 @@
       }
     },
     mounted () {
+      let self = this
+
       localStorage.removeItem('player1')
       localStorage.removeItem('player2')
       this.leftSrcImg = this.arrImg[this.leftSrc - 1]
       this.rightSrcImg = this.arrImg[this.rightSrc - 1]
+
+      db
+        .ref("rooms/" + this.room + "/player2")
+        .on("value", function(snapshot) {
+          if(snapshot.val() == null) {
+            self.rightSrcImg = self.arrImg[0]
+          } else {
+            self.rightSrcImg = self.arrImg[snapshot.val().status]
+          }
+        });
+
+      db
+        .ref("rooms/" + this.room + "/player1")
+        .on("value", function(snapshot) {
+          if(snapshot.val() == null) {
+            self.leftSrcImg = self.arrImg[0]
+          } else {
+            self.leftSrcImg = self.arrImg[snapshot.val().status]
+          }
+        });
     }
-    // watch: {
-    //   rightSrcImg () {
-    //     console.log('masuk ga')
-
-    //     let self = this
-
-    //     db
-    //       .ref("rooms/" + this.room + "/player2")
-    //       .once("value")
-    //       .then(function(snapshot) {
-    //         console.log('=-----------------------------!')
-    //         // let pos = snapshot.val().status
-    //         // self.rightSrcImg = self.arrImg[pos]
-    //       }
-    //   }
-    //}
   };
 </script>
 
