@@ -31,7 +31,34 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
   <script>
+    let leftCount = 0;
+    let rightCount = 0;
+    let currentLeft = 1;
+    let currentRight = 1;
+
+    let stateLimitClick = 5;
+    let zombieImage = 8;
+
+    let baseImgURL = 'http://localhost:8080/gameplay_template/img/kepotong'
+
     $('.left-btn').click(function(e) {
+      console.log(`${baseImgURL}/8.png`, '<============ URL IMAGE')
+
+      if(leftCount >= stateLimitClick) {
+        leftCount = 0;
+
+        if(currentLeft >= zombieImage) {
+          alert('GAME FINISH');
+        } else {
+          $('.left-img img').attr('src', `${baseImgURL}/${currentLeft += 1}.png`);
+        }
+      } else {
+        leftCount++;
+      }
+
+      console.log(leftCount, '<======== COUNT CLICK');
+      console.log(currentLeft, '<========== CURRENT IMAGE');
+
       $(this).addClass('animate');
       setTimeout(() => {
         $(this).removeClass('animate');
@@ -39,6 +66,8 @@
     });
 
     $('.right-btn').click(function(e) {
+      rightCount++;
+
       $(this).addClass('animate');
       setTimeout(() => {
         $(this).removeClass('animate');
