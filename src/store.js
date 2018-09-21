@@ -39,7 +39,7 @@ export default new Vuex.Store({
                   token : room,
                   status: 0
               })
-              let token = room
+              // let token = room
               localStorage.setItem('room', room)
               window.location.href = '/room'
           }else if (!cek.player2 && cek.player1 !== '') {
@@ -48,7 +48,7 @@ export default new Vuex.Store({
                   token : room,
                   status: 0
               })
-              let token = room
+              // let token = room
               localStorage.setItem('room', room)
               // localStorage.setItem('token2', token)
               window.location.href = '/room'

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import GamePlay from '@/components/GamePlay'
+import GamePlay from '@/components/Game'
 export default {
     components: {
         GamePlay
@@ -15,18 +15,4 @@ export default {
 
 <style>
 </style>
-//     /* <game></game>
-// </template>
 
-// // <script>
-// import game from "@/components/Game.vue";
-// export default {
-//   name: "home",
-//   components: {
-//     game
-//   }
-// };
-// </script>
-
-// <style>
-// </style> 

@@ -49,19 +49,28 @@ export default {
     },
 
     tambah2() {
-      this.value2++;
-      if (this.value2 == 5) {
-        console.log(this.value2);
-        alert("step 10");
-      } else if (this.value2 == 10) {
-        console.log(this.value2);
-        alert("step 15");
-      } else if (this.value2 == 15) {
-        console.log(this.value2);
-        alert("finish");
-        this.value2 = 0;
-      }
-    }
+        db.ref('rooms/'+this.room+'/player2').set({
+            player: 'player2',
+            token: this.room,
+            status: this.counter1++
+        })
+
+       this.read2()
+    },
+
+    read2 () {
+         db.ref('rooms/'+this.room+'/player2').once('value')
+        .then(function(snapshot) {
+            let pos = snapshot.val().status
+            if (pos == 10) {
+                alert(`${pos}`)
+            } else if (pos == 15) {
+                 alert(`${pos}`)
+            } else if (pos == 20) {
+                alert('winner')
+            }
+        })
+    },
   }
 };
 </script>
