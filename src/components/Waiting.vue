@@ -38,7 +38,7 @@ export default {
     let room = localStorage.getItem("room")
     console.log(room);
     
-    db.ref("/rooms/"+room).once("value")
+    db.ref("rooms/"+room).once("value")
     .then((snapshot) => {
       if (snapshot.val().player1.player) {
         this.player1 = snapshot.val().player1.player

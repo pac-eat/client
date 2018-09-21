@@ -92,6 +92,10 @@
       engah2() {
         document.getElementById("engah2").play();
       }
+    },
+    mounted () {
+      localStorage.removeItem('player1')
+      localStorage.removeItem('player2')
     }
   };
 </script>
