@@ -26,7 +26,7 @@ export default new Vuex.Store({
         context.commit('CHANGE', room)
         context.commit('ADD_PLAYER',player)
         console.log(' ini room ',room);
-        console.log('ini',player);
+        console.log('ini player di store',player);
         
         db.ref('rooms/' + room).once('value').then(function(snapshot){
           console.log(snapshot);
@@ -41,6 +41,7 @@ export default new Vuex.Store({
               })
               // let token = room
               localStorage.setItem('room', room)
+              localStorage.setItem('player1', player)
               window.location.href = '/room'
           }else if (!cek.player2 && cek.player1 !== '') {
               db.ref('rooms/' + room + '/player2').set({
@@ -50,7 +51,7 @@ export default new Vuex.Store({
               })
               // let token = room
               localStorage.setItem('room', room)
-              // localStorage.setItem('token2', token)
+              localStorage.setItem('player2', player)
               window.location.href = '/room'
           }
       });
